@@ -48,10 +48,7 @@ public class SpawnManagerX : MonoBehaviour
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-        Debug.Log(waveCount);
-        Debug.Log(enemiesPast);
-
-        if (waveCount -1 == enemiesPast && waveCount != 1)
+        if (waveCount - 1 == enemiesPast && waveCount != 1)
         {
             gameOver = true;
         }
