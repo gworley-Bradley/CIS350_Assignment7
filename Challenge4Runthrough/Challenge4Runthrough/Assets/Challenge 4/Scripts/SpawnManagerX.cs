@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * (Gavin Worley)
+ * (Challenge 4)
+ * (Brief description of the code in the file.
+ *  Used to manage the spawning of the enemies and powerups)
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +14,7 @@ public class SpawnManagerX : MonoBehaviour
     public GameObject powerupPrefab;
 
     public EnemyX enemyScript;
+    public UIManager uiManager;
 
 
     private float spawnRangeX = 10;
@@ -15,7 +22,10 @@ public class SpawnManagerX : MonoBehaviour
     private float spawnZMax = 25; // set max spawn Z
 
     public int enemyCount;
+    public int enemiesPast = 0;
     public int waveCount = 1;
+
+    public bool gameOver;
 
 
     public GameObject player;
@@ -27,12 +37,27 @@ public class SpawnManagerX : MonoBehaviour
         {
             enemyScript = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyX>();
         }
+        if (uiManager == null)
+        {
+            uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+        Debug.Log(waveCount);
+        Debug.Log(enemiesPast);
+
+        if (waveCount -1 == enemiesPast && waveCount != 1)
+        {
+            gameOver = true;
+        }
+
+
+
 
         if (enemyCount == 0)
         {
@@ -43,6 +68,7 @@ public class SpawnManagerX : MonoBehaviour
         {
             enemyPrefab.GetComponent<EnemyX>().speed = 5.0f;
         }
+
 
     }
 
@@ -71,6 +97,7 @@ public class SpawnManagerX : MonoBehaviour
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
             
         }
+        enemiesPast = 0;
         enemyPrefab.GetComponent<EnemyX>().speed += waveCount;
         waveCount++;
         ResetPlayerPosition(); // put player back at start

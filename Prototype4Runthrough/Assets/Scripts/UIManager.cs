@@ -1,8 +1,8 @@
 ﻿/*
  * (Gavin Worley)
- * (Challenge 3)
+ * (Prototype 4)
  * (Brief description of the code in the file.
- *  Used to show player the score and game decisions)
+ *  Used to show the UI to the player)
  */
 using System.Collections;
 using System.Collections.Generic;

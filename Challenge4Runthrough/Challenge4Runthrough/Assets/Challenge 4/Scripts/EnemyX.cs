@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * (Gavin Worley)
+ * (Challenge 4)
+ * (Brief description of the code in the file.
+ *  Enemy class to define enemies and track enemies that get past)
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +14,18 @@ public class EnemyX : MonoBehaviour
     private Rigidbody enemyRb;
     private GameObject playerGoal;
 
+    public SpawnManagerX spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
         enemyRb = GetComponent<Rigidbody>();
         playerGoal = GameObject.Find("Player Goal");
+
+        if (spawnManager == null)
+        {
+            spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManagerX>();
+        }
     }
 
     // Update is called once per frame
@@ -21,7 +34,6 @@ public class EnemyX : MonoBehaviour
         // Set enemy direction towards player goal and move there
         Vector3 lookDirection = (playerGoal.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed * Time.deltaTime);
-        Debug.Log(speed);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -33,6 +45,7 @@ public class EnemyX : MonoBehaviour
         } 
         else if (other.gameObject.name == "Player Goal")
         {
+            spawnManager.enemiesPast++;
             Destroy(gameObject);
         }
 

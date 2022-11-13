@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * (Gavin Worley)
+ * (Prototype 4)
+ * (Brief description of the code in the file.
+ *  Used to rotate the camera)
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
