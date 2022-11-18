@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * (Gavin Worley)
+ * (Prototype 5)
+ * (Brief description of the code in the file.
+ *  allows the player to set a difficulty)
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,13 +31,7 @@ public class DifficultyButton : MonoBehaviour
 
     void SetDifficulty()
     {
-        Debug.Log(gameObject.name + " was clicked");
+        //Debug.Log(gameObject.name + " was clicked");
         gameManager.StartGame(difficulty);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
